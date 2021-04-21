@@ -5,6 +5,6 @@ class UserModel {
   UserModel({
     required this.name,
     required this.photoURL,
-    required this.score,
+    this.score = 0,
   });
 }
