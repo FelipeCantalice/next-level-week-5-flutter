@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:nlw_5/core/app_colors.dart';
 import 'package:nlw_5/core/app_text_styles.dart';
 import 'package:nlw_5/home/widgets/chart/chart_widget.dart';
 
-class ScoreCardWidget extends StatelessWidget {
+class ScoreCardWidget extends StatefulWidget {
+  final double percentage;
+  const ScoreCardWidget({
+    Key? key,
+    required this.percentage,
+  }) : super(key: key);
+  @override
+  _ScoreCardWidgetState createState() => _ScoreCardWidgetState();
+}
+
+class _ScoreCardWidgetState extends State<ScoreCardWidget>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +31,11 @@ class ScoreCardWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(flex: 1, child: ChartWidget()),
+              Expanded(
+                  flex: 1,
+                  child: ChartWidget(
+                    percentage: widget.percentage,
+                  )),
               Expanded(
                 flex: 3,
                 child: Padding(
