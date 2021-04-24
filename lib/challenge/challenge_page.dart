@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:nlw_5/challenge/widgets/question_indicator_widget/question_indicator_widget.dart';
 import 'package:nlw_5/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:nlw_5/result/result_page.dart';
@@ -10,9 +11,11 @@ import 'widgets/next_button/next_button_widget.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
+  final String title;
   ChallengePage({
     Key? key,
     required this.questions,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -38,6 +41,12 @@ class _ChallengePageState extends State<ChallengePage> {
         curve: Curves.linear,
       );
     }
+  }
+
+  void onSelected(bool value) {
+    if (value == true) controller.quantidadeAcertos++;
+
+    nextPage();
   }
 
   @override
@@ -68,7 +77,7 @@ class _ChallengePageState extends State<ChallengePage> {
           for (var q in widget.questions) ...{
             QuizWidget(
               question: q,
-              onChange: nextPage,
+              onSelected: onSelected,
             )
           }
         ],
@@ -94,10 +103,14 @@ class _ChallengePageState extends State<ChallengePage> {
                     child: NextButtonWidget.green(
                       label: "Finalizar",
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (ctx) => ResultPage(),
+                            builder: (ctx) => ResultPage(
+                              title: widget.title,
+                              size: widget.questions.length,
+                              acertos: controller.quantidadeAcertos,
+                            ),
                           ),
                         );
                       },
