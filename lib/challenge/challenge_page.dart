@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:nlw_5/challenge/widgets/question_indicator_widget/question_indicator_widget.dart';
 import 'package:nlw_5/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:nlw_5/result/result_page.dart';
 import 'package:nlw_5/shared/models/question_model.dart';
-
 import 'challenge_controller.dart';
 import 'widgets/next_button/next_button_widget.dart';
 
@@ -45,7 +43,6 @@ class _ChallengePageState extends State<ChallengePage> {
 
   void onSelected(bool value) {
     if (value == true) controller.quantidadeAcertos++;
-
     nextPage();
   }
 
@@ -53,7 +50,7 @@ class _ChallengePageState extends State<ChallengePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: Size.fromHeight(120),
         child: SafeArea(
             top: true,
             child: Column(

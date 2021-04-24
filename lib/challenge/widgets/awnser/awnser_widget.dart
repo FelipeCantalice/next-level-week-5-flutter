@@ -8,7 +8,7 @@ class AwnserWidget extends StatelessWidget {
   final AwnserModel awnser;
   final bool isSelected;
   final bool disabled;
-  final ValueChanged onTap;
+  final ValueChanged<bool> onTap;
 
   const AwnserWidget({
     Key? key,

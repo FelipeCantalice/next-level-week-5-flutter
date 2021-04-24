@@ -7,12 +7,26 @@ class ResultPage extends StatelessWidget {
   final String title;
   final int size;
   final int acertos;
-  const ResultPage({
+
+  late double percentage;
+  late String message;
+  late String icon;
+  ResultPage({
     Key? key,
     required this.title,
     required this.size,
     required this.acertos,
-  }) : super(key: key);
+  }) {
+    percentage = (acertos / size);
+
+    if (percentage >= 0.7) {
+      message = "Parabéns";
+      icon = AppImages.trophy;
+    } else {
+      message = "Tente novamente!";
+      icon = AppImages.error;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +38,11 @@ class ResultPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AppImages.trophy),
+            Image.asset(icon),
             Column(
               children: [
                 Text(
-                  "Parabéns",
+                  message,
                   style: AppTextStyles.heading40,
                 ),
                 SizedBox(height: 16),
